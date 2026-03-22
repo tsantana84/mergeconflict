@@ -60,6 +60,7 @@ export function getPostBySlug(slug: string): Post | undefined {
     excerpt: data.excerpt || "",
     readingTime: stats.text,
     content,
+    image: data.image || undefined,
   };
 }
 
