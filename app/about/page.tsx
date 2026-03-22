@@ -21,24 +21,24 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-2xl px-6 py-16">
       {/* Hero: photo + name/tagline/socials */}
-      <div className="flex items-center gap-8">
+      <div className="flex flex-col items-center text-center sm:flex-row sm:items-center sm:text-left gap-6 sm:gap-8">
         <Image
           src="/images/thiago.jpg"
           alt="Thiago Santana"
           width={176}
           height={176}
-          className="h-44 w-44 flex-shrink-0 rounded-xl object-cover"
+          className="h-32 w-32 sm:h-44 sm:w-44 flex-shrink-0 rounded-xl object-cover"
           priority
         />
         <div>
-          <h1 className="font-heading text-3xl font-extrabold tracking-tight text-text-primary">
+          <h1 className="font-heading text-2xl sm:text-3xl font-extrabold tracking-tight text-text-primary">
             Thiago Santana
           </h1>
           <p className="mt-1 text-text-muted">
             Engineering Manager &middot; Coder
           </p>
           <p className="text-sm text-text-muted">Rio de Janeiro, Brazil</p>
-          <div className="mt-4 flex gap-3">
+          <div className="mt-4 flex justify-center sm:justify-start gap-3">
             {socials.map((s) => (
               <a
                 key={s.label}
