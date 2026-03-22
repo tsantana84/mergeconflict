@@ -6,7 +6,7 @@ export default function Home() {
   const [featured, ...rest] = posts;
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16">
+    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-16">
       {featured && (
         <section className="mb-16">
           <PostCard post={featured} featured />

@@ -49,7 +49,7 @@ export default async function BlogPost({ params }: PageProps) {
   const postUrl = `https://mergeconflict.space/blog/${slug}`;
 
   return (
-    <article className="mx-auto max-w-prose px-6 py-16">
+    <article className="mx-auto max-w-prose px-4 py-10 sm:px-6 sm:py-16">
       <ScrollDepthTracker slug={slug} />
 
       <div className="mb-6 flex gap-2">
@@ -58,11 +58,11 @@ export default async function BlogPost({ params }: PageProps) {
         ))}
       </div>
 
-      <h1 className="mb-4 font-heading text-4xl font-extrabold leading-[1.1] tracking-tight text-text-primary md:text-5xl">
+      <h1 className="mb-4 font-heading text-3xl font-extrabold leading-[1.1] tracking-tight text-text-primary sm:text-4xl md:text-5xl">
         {post.title}
       </h1>
 
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3 text-sm text-text-muted">
           <time dateTime={post.date}>{post.date}</time>
           <span>·</span>
@@ -86,8 +86,8 @@ export default async function BlogPost({ params }: PageProps) {
 
       <div className="prose-custom">{content}</div>
 
-      <div className="mt-12 flex items-center justify-between border-t border-border pt-6">
-        <div className="flex gap-2">
+      <div className="mt-12 flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap gap-2">
           {post.tags.map((tag) => (
             <TagBadge key={tag} tag={tag} />
           ))}
