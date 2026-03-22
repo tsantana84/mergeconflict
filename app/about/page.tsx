@@ -57,24 +57,45 @@ export default function AboutPage() {
       {/* Divider */}
       <hr className="my-10 border-border" />
 
-      {/* Bio */}
+      {/* What is Merge Conflict */}
       <div className="space-y-5 text-lg leading-[1.75] text-text-secondary">
+        <h2 className="font-heading text-xl font-bold text-text-primary">
+          What is Merge Conflict
+        </h2>
         <p>
           <strong className="text-text-primary">Merge Conflict</strong> is a
-          blog about the tension between being an engineering manager and still
-          writing code — and how AI is changing both sides of that equation.
+          blog about what happens when you refuse to pick a lane. Management or
+          engineering. Strategy or code. People problems or technical problems.
+          This blog lives in the diff between both.
         </p>
+      </div>
+
+      {/* About me */}
+      <div className="mt-10 space-y-5 text-lg leading-[1.75] text-text-secondary">
+        <h2 className="font-heading text-xl font-bold text-text-primary">
+          About me
+        </h2>
         <p>
-          I&apos;m an EM who never fully left the codebase. Every day is a merge
-          conflict between the manager branch and the engineer branch. Before
-          management, I spent years shipping backend systems and still get pulled
-          back to the terminal more often than my calendar would like.
+          I&apos;m Thiago Santana, an engineering manager who&apos;s been
+          writing more code lately than at any point since moving into
+          management, thanks to AI. I stay off the critical path (my team owns
+          the main branch), but I&apos;ve been using AI tools to build internal
+          tooling, run experiments, and automate things that probably
+          don&apos;t need automating. Before management, I spent years in
+          backend engineering, and honestly, the terminal never stopped calling.
         </p>
+      </div>
+
+      {/* What to expect */}
+      <div className="mt-10 space-y-5 text-lg leading-[1.75] text-text-secondary">
+        <h2 className="font-heading text-xl font-bold text-text-primary">
+          What to expect
+        </h2>
         <p>
-          When I&apos;m not resolving conflicts (the git kind or the people
-          kind), you&apos;ll find me exploring AI tools, automating things that
-          probably don&apos;t need automating, and writing about what I learn
-          along the way.
+          Posts here cover engineering leadership, hands-on coding, and AI tools
+          and workflows. Especially how AI is changing what&apos;s possible for
+          managers who still want to build. No posting schedule, just whenever
+          something is worth a <code className="text-text-primary">git push</code>.
         </p>
       </div>
 
