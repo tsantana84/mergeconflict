@@ -16,7 +16,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { tag } = await params;
   return {
     title: `Posts tagged "${tag}"`,
-    description: `All posts about ${tag} on Merge Conflict`,
+    description: `All posts about ${tag} on Merge Conflict.`,
+    openGraph: {
+      title: `Posts tagged "${tag}" | Merge Conflict`,
+      description: `All posts about ${tag} on Merge Conflict.`,
+      url: `https://mergeconflict.space/tags/${tag}`,
+    },
   };
 }
 

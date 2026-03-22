@@ -4,7 +4,12 @@ import { TagBadge } from "@/components/TagBadge";
 
 export const metadata: Metadata = {
   title: "Tags",
-  description: "Browse posts by topic",
+  description: "Browse all topics on Merge Conflict: AI, engineering leadership, coding, and more.",
+  openGraph: {
+    title: "Tags | Merge Conflict",
+    description: "Browse all topics on Merge Conflict.",
+    url: "https://mergeconflict.space/tags",
+  },
 };
 
 export default function TagsPage() {

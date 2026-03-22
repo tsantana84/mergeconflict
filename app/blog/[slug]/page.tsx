@@ -7,6 +7,7 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 import { ScrollDepthTracker } from "@/components/ScrollDepthTracker";
 import { ShareButtons } from "@/components/ShareButtons";
 import { RelatedPosts } from "@/components/RelatedPosts";
+import { BlogPostingJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,16 +25,32 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = getPostBySlug(slug);
   if (!post) return {};
 
+  const url = `https://mergeconflict.space/blog/${slug}`;
+  const imageUrl = post.image
+    ? `https://mergeconflict.space${post.image}`
+    : undefined;
+
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
       publishedTime: post.date,
-      url: `https://mergeconflict.space/blog/${slug}`,
-      ...(post.image && { images: [post.image] }),
+      authors: ["Thiago Santana"],
+      tags: post.tags,
+      url,
+      ...(imageUrl && { images: [{ url: imageUrl, width: 1200, height: 630, alt: post.title }] }),
+    },
+    twitter: {
+      card: imageUrl ? "summary_large_image" : "summary",
+      title: post.title,
+      description: post.excerpt,
+      ...(imageUrl && { images: [imageUrl] }),
     },
   };
 }
@@ -50,6 +67,14 @@ export default async function BlogPost({ params }: PageProps) {
 
   return (
     <article className="mx-auto max-w-prose px-4 py-10 sm:px-6 sm:py-16">
+      <BlogPostingJsonLd post={post} url={postUrl} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://mergeconflict.space" },
+          { name: "Blog", url: "https://mergeconflict.space" },
+          { name: post.title, url: postUrl },
+        ]}
+      />
       <ScrollDepthTracker slug={slug} />
 
       <div className="mb-6 flex gap-2">

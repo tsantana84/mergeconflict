@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { PersonJsonLd } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Merge Conflict — the blog about the tension between management and engineering.",
+    "About Merge Conflict — the blog about the tension between management and engineering. Written by Thiago Santana, engineering manager and coder from Rio de Janeiro.",
+  openGraph: {
+    title: "About | Merge Conflict",
+    description:
+      "About Merge Conflict — the blog about the tension between management and engineering. Written by Thiago Santana.",
+    url: "https://mergeconflict.space/about",
+  },
 };
 
 const socials = [
@@ -20,6 +27,7 @@ const socials = [
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-2xl px-6 py-16">
+      <PersonJsonLd />
       {/* Hero: photo + name/tagline/socials */}
       <div className="flex flex-col items-center text-center sm:flex-row sm:items-center sm:text-left gap-6 sm:gap-8">
         <Image

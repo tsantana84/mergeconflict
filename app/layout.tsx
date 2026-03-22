@@ -28,6 +28,18 @@ export const metadata: Metadata = {
   description:
     "The tension between being an engineering manager and still writing code. AI, leadership, and engineering.",
   metadataBase: new URL("https://mergeconflict.space"),
+  openGraph: {
+    type: "website",
+    siteName: "Merge Conflict",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@thiagosantana",
+  },
+  alternates: {
+    canonical: "./",
+  },
 };
 
 export default function RootLayout({
