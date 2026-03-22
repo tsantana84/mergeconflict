@@ -4,21 +4,37 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import OpenAI from "openai";
+import sharp from "sharp";
 
 const POSTS_DIR = path.join(process.cwd(), "content/posts");
 const IMAGES_DIR = path.join(process.cwd(), "public/images/posts");
 
-const STYLE_PROMPT = `Create an abstract, psychedelic digital artwork. The style should be:
-- Dark background (#0a0a0a or very dark)
-- Vibrant neon colors with orange (#f97316) and pink (#ec4899) as dominant accents
-- Abstract geometric shapes, flowing forms, fractals, or warped patterns
-- Psychedelic and trippy — think fluid gradients, impossible geometry, optical illusions
-- No text, no words, no letters, no numbers
-- No people or faces
-- Modern and bold, suitable as a blog post header image
-- Aspect ratio 16:9, landscape orientation
+const STYLE_PROMPT = `Create a painting that looks like a CENTURIES-OLD oil painting from the Renaissance or Baroque era that has been CORRUPTED by technology — with SURREALIST impossible elements woven throughout.
 
-The artwork should evoke the mood and theme described below, interpreted abstractly through shapes, colors, and patterns — not literally.`;
+Style requirements:
+- Classical oil painting technique — cracked varnish, aged canvas texture, yellowed patina, visible brushstrokes
+- The painting should look PHYSICALLY OLD — found in an attic, wear marks, faded edges, warmth of aged pigments
+- Technology bleeds through the canvas: circuit board patterns emerging from cracked paint, holographic glitches disrupting classical scenes, fiber optic cables growing like organic matter through classical architecture
+- Technological elements rendered in period-accurate oil painting style — as if the old master SAW these things
+
+SURREALIST ELEMENTS (essential):
+- Impossible physics: gravity-defying compositions, spatial paradoxes, dream logic
+- Objects that contradict their context — things that shouldn't be where they are
+- Impossible spatial relationships — spaces that fold, expand, or contradict themselves
+- Scales are wrong, perspectives shift mid-canvas, multiple horizons coexist
+- Objects transforming into other objects mid-canvas — organic metamorphosis between unrelated forms
+- Organic architecture — structures that feel alive, breathing, growing
+
+Aging and texture:
+- Craquelure across the entire surface
+- Areas "peeling" to reveal technological layers underneath
+- Gold leaf accents in unexpected patterns
+- Old master palette — ochres, siennas, deep reds, muted greens — with electric blues and neon bleeding through
+
+NO text, words, letters, numbers, recognizable human faces or portraits.
+Aspect ratio 16:9, landscape orientation.
+
+IMPORTANT: Do NOT use melting clocks, infinite staircases, or other common surrealist clichés. Invent NEW surrealist metaphors. Every image must have a completely UNIQUE scene and composition.`;
 
 async function main() {
   const apiKey = process.env.OPENAI_API_KEY;
@@ -75,7 +91,7 @@ async function main() {
         prompt,
         n: 1,
         size: "1536x1024",
-        quality: "medium",
+        quality: "high",
       });
 
       const imageData = response.data?.[0]?.b64_json;
@@ -84,10 +100,14 @@ async function main() {
         continue;
       }
 
-      const imagePath = path.join(IMAGES_DIR, `${post.slug}.png`);
-      fs.writeFileSync(imagePath, Buffer.from(imageData, "base64"));
+      const pngBuffer = Buffer.from(imageData, "base64");
+      const imagePath = path.join(IMAGES_DIR, `${post.slug}.webp`);
+      await sharp(pngBuffer)
+        .resize(1280, undefined, { withoutEnlargement: true })
+        .webp({ quality: 80 })
+        .toFile(imagePath);
 
-      const relativeImagePath = `/images/posts/${post.slug}.png`;
+      const relativeImagePath = `/images/posts/${post.slug}.webp`;
       const fullPath = path.join(POSTS_DIR, post.file);
       const fileContent = fs.readFileSync(fullPath, "utf8");
       const { data, content } = matter(fileContent);
