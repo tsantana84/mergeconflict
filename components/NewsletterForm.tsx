@@ -60,7 +60,7 @@ export function NewsletterForm() {
       <p className="mb-4 text-sm text-text-muted">
         Essays on engineering management, coding, and AI. No spam.
       </p>
-      <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row gap-3">
         <label htmlFor="newsletter-email" className="sr-only">
           Email address
         </label>
