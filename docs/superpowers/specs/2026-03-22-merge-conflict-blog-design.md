@@ -87,7 +87,8 @@ merge-conflict/
 │   └── MDXComponents.tsx       # Custom MDX renderers (code, callout, blockquote)
 ├── lib/
 │   ├── posts.ts                # getAllPosts, getPostBySlug, getPostsByTag, getAllTags
-│   └── mdx.ts                  # MDX parse/render utilities
+│   ├── mdx.ts                  # MDX parse/render utilities
+│   └── analytics.ts            # GA4 gtag helper + custom event functions
 ├── public/
 │   └── images/
 ├── tailwind.config.ts
@@ -135,12 +136,49 @@ excerpt: string      # Short description for cards and SEO
 
 ## Content Utilities (`lib/posts.ts`)
 
-- `getAllPosts()`: Read all MDX files from `content/posts/`, parse frontmatter, sort by date desc
+- `getAllPosts()`: Read all MDX files from `content/posts/`, parse frontmatter, sort by date desc. Computes `readingTime` from word count (~200 wpm).
 - `getPostBySlug(slug)`: Read and parse single post by filename
 - `getPostsByTag(tag)`: Filter posts by tag
 - `getAllTags()`: Extract unique tags with post counts
 
 All functions run at build time (static generation).
+
+## Analytics (Google Analytics 4)
+
+Metrics from day zero. GA4 via `gtag.js` loaded in root layout.
+
+**Traffic & Audience (built-in GA4):**
+- Pageviews (total and per post)
+- Unique visitors
+- Sessions and average duration
+- Bounce rate
+- Traffic source breakdown (direct, social, search, newsletter)
+
+**Content & Engagement (custom events):**
+- `post_read` — fired when user reaches 75% scroll depth on a post
+- `scroll_depth` — tracked at 25%, 50%, 75%, 100% milestones
+- `newsletter_cta_view` — fired when newsletter form enters viewport
+- `newsletter_cta_click` — fired when user focuses the email input
+- `newsletter_signup` — fired on form submit
+
+**SEO (via Google Search Console, linked to GA4):**
+- Search queries driving traffic
+- Average position per post
+- Core Web Vitals (LCP, INP, CLS)
+
+**Implementation:**
+- `GA_MEASUREMENT_ID` in environment variable
+- Script loaded conditionally (skip in dev)
+- Custom events fired via `gtag('event', ...)` helper in `lib/analytics.ts`
+- Scroll depth tracking via Intersection Observer on post pages
+- Newsletter funnel: view → click → signup tracked as custom events
+
+## SEO & Metadata
+
+- Use Next.js `generateMetadata` in each page/layout for `<title>`, `<meta description>`, Open Graph tags
+- Post pages: title from frontmatter, description from excerpt, og:type article
+- Home/Tags/About: static metadata
+- Canonical URLs with `mergeconflict.space` domain
 
 ## Accessibility Requirements
 
@@ -159,7 +197,7 @@ Newsletter signup is a component (`NewsletterForm.tsx`) used in:
 - Footer (persistent across all pages)
 - Inline at the end of each blog post
 
-Integration with the actual newsletter service will be added later. For v1, the form collects email and shows a success state (no backend).
+Integration with the actual newsletter service will be added later. For v1, the form collects email and shows an inline success message replacing the form ("Thanks! You'll hear from us soon.").
 
 ## Future Considerations (not in v1)
 
