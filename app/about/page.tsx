@@ -37,7 +37,7 @@ export default function AboutPage() {
           <p className="mt-1 text-text-muted">
             Engineering Manager &middot; Coder
           </p>
-          <p className="text-sm text-text-muted">Brazilian in Sweden</p>
+          <p className="text-sm text-text-muted">Rio de Janeiro, Brazil</p>
           <div className="mt-4 flex gap-3">
             {socials.map((s) => (
               <a
