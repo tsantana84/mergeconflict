@@ -1,0 +1,178 @@
+<h2>Qual vibe visual combina com o Merge Conflict?</h2>
+<p class="subtitle">Clique no estilo que mais te atrai. Cada card é um mockup de como o blog ficaria.</p>
+
+<div class="cards" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1200px;margin:0 auto;">
+
+  <!-- OPTION A: Clean & Editorial -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)" style="cursor:pointer;border:2px solid transparent;border-radius:12px;overflow:hidden;background:#fff;transition:all 0.2s;">
+    <div class="card-image" style="padding:0;margin:0;">
+      <div style="background:#fafaf9;padding:0;font-family:Georgia,'Times New Roman',serif;">
+        <!-- Nav -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 28px;border-bottom:1px solid #e8e5e0;">
+          <span style="font-size:18px;font-weight:700;letter-spacing:-0.5px;color:#1a1a1a;">merge<span style="color:#999;">conflict</span></span>
+          <div style="display:flex;gap:20px;font-size:12px;color:#888;font-family:-apple-system,sans-serif;text-transform:uppercase;letter-spacing:1px;">
+            <span>Essays</span><span>About</span><span>Newsletter</span>
+          </div>
+        </div>
+        <!-- Hero -->
+        <div style="padding:48px 28px 24px;max-width:520px;">
+          <div style="font-size:11px;color:#999;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;font-family:-apple-system,sans-serif;">March 2026</div>
+          <h1 style="font-size:28px;line-height:1.2;color:#1a1a1a;margin:0 0 16px;font-weight:400;letter-spacing:-0.5px;">The Manager Who Still Writes Code</h1>
+          <p style="font-size:14px;line-height:1.7;color:#666;margin:0 0 20px;">There's a quiet tension in every engineering manager's day. The pull request you want to review versus the 1:1 you need to prepare for. AI is changing this equation in ways I didn't expect.</p>
+          <span style="font-size:12px;color:#1a1a1a;border-bottom:1px solid #1a1a1a;padding-bottom:2px;font-family:-apple-system,sans-serif;">Continue reading →</span>
+        </div>
+        <!-- Post list -->
+        <div style="padding:0 28px 24px;">
+          <div style="border-top:1px solid #e8e5e0;padding:16px 0;">
+            <div style="font-size:15px;color:#1a1a1a;margin-bottom:4px;">Why I Let Claude Write My Sprint Retros</div>
+            <div style="font-size:12px;color:#aaa;">8 min read</div>
+          </div>
+          <div style="border-top:1px solid #e8e5e0;padding:16px 0;">
+            <div style="font-size:15px;color:#1a1a1a;margin-bottom:4px;">Code Review as a Management Tool</div>
+            <div style="font-size:12px;color:#aaa;">12 min read</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" style="padding:16px 20px;background:#f8f8f6;">
+      <h3 style="margin:0 0 6px;font-size:16px;">A — Clean & Editorial</h3>
+      <p style="margin:0;font-size:13px;color:#666;">Espaço em branco generoso, tipografia serifada, sensação de revista literária. Foco total no texto. Elegante e atemporal.</p>
+    </div>
+  </div>
+
+  <!-- OPTION B: Dev Aesthetic -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)" style="cursor:pointer;border:2px solid transparent;border-radius:12px;overflow:hidden;background:#fff;transition:all 0.2s;">
+    <div class="card-image" style="padding:0;margin:0;">
+      <div style="background:#0d1117;padding:0;font-family:'SF Mono',Consolas,'Courier New',monospace;">
+        <!-- Nav -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid #21262d;">
+          <span style="font-size:15px;color:#58a6ff;">~/merge-conflict<span style="color:#8b949e;animation:blink 1s infinite;">_</span></span>
+          <div style="display:flex;gap:16px;font-size:11px;color:#8b949e;">
+            <span style="color:#7ee787;">posts</span><span>about</span><span>newsletter</span>
+          </div>
+        </div>
+        <!-- Hero -->
+        <div style="padding:36px 24px 20px;">
+          <div style="font-size:11px;color:#8b949e;margin-bottom:12px;"><span style="color:#7ee787;">$</span> cat latest.md</div>
+          <h1 style="font-size:24px;line-height:1.3;color:#f0f6fc;margin:0 0 14px;font-weight:600;">The Manager Who Still Writes Code</h1>
+          <p style="font-size:13px;line-height:1.7;color:#8b949e;margin:0 0 16px;font-family:-apple-system,sans-serif;">There's a quiet tension in every engineering manager's day. The pull request you want to review versus the 1:1 you need to prepare for.</p>
+          <div style="display:flex;gap:8px;">
+            <span style="font-size:11px;background:#1f6feb33;color:#58a6ff;padding:3px 10px;border-radius:12px;">management</span>
+            <span style="font-size:11px;background:#23883433;color:#7ee787;padding:3px 10px;border-radius:12px;">ai</span>
+          </div>
+        </div>
+        <!-- Post list -->
+        <div style="padding:0 24px 20px;">
+          <div style="border-top:1px solid #21262d;padding:14px 0;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:14px;color:#f0f6fc;margin-bottom:3px;">Why I Let Claude Write My Sprint Retros</div>
+              <div style="font-size:11px;color:#484f58;">2026-03-15 · 8 min</div>
+            </div>
+            <span style="font-size:11px;background:#23883433;color:#7ee787;padding:2px 8px;border-radius:8px;">ai</span>
+          </div>
+          <div style="border-top:1px solid #21262d;padding:14px 0;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:14px;color:#f0f6fc;margin-bottom:3px;">Code Review as a Management Tool</div>
+              <div style="font-size:11px;color:#484f58;">2026-03-08 · 12 min</div>
+            </div>
+            <span style="font-size:11px;background:#1f6feb33;color:#58a6ff;padding:2px 8px;border-radius:8px;">management</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" style="padding:16px 20px;background:#f8f8f6;">
+      <h3 style="margin:0 0 6px;font-size:16px;">B — Dev Aesthetic</h3>
+      <p style="margin:0;font-size:13px;color:#666;">Dark mode, monospace, referências a terminal e código. Refinado mas com identidade técnica forte. GitHub vibes.</p>
+    </div>
+  </div>
+
+  <!-- OPTION C: Modern & Bold -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)" style="cursor:pointer;border:2px solid transparent;border-radius:12px;overflow:hidden;background:#fff;transition:all 0.2s;">
+    <div class="card-image" style="padding:0;margin:0;">
+      <div style="background:#0a0a0a;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;">
+        <!-- Nav -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;">
+          <span style="font-size:20px;font-weight:800;letter-spacing:-1px;">
+            <span style="color:#fff;">MERGE</span><span style="background:linear-gradient(135deg,#f97316,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">CONFLICT</span>
+          </span>
+          <div style="display:flex;gap:16px;font-size:12px;color:#a1a1aa;font-weight:500;">
+            <span>Posts</span><span>About</span><span style="background:linear-gradient(135deg,#f97316,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">Newsletter</span>
+          </div>
+        </div>
+        <!-- Hero -->
+        <div style="padding:32px 24px 20px;">
+          <div style="display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#000;background:linear-gradient(135deg,#f97316,#ec4899);padding:4px 12px;border-radius:4px;margin-bottom:16px;">Latest</div>
+          <h1 style="font-size:32px;line-height:1.1;color:#fff;margin:0 0 14px;font-weight:800;letter-spacing:-1.5px;">The Manager<br>Who Still<br>Writes Code</h1>
+          <p style="font-size:13px;line-height:1.6;color:#71717a;margin:0 0 16px;max-width:380px;">There's a quiet tension in every engineering manager's day. AI is changing this equation.</p>
+          <div style="display:inline-block;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,#f97316,#ec4899);padding:8px 20px;border-radius:8px;">Read →</div>
+        </div>
+        <!-- Cards -->
+        <div style="padding:16px 24px 20px;display:flex;gap:12px;">
+          <div style="flex:1;background:#18181b;border-radius:10px;padding:16px;">
+            <div style="font-size:10px;color:#f97316;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">AI</div>
+            <div style="font-size:13px;color:#fff;font-weight:600;line-height:1.3;">Why I Let Claude Write My Sprint Retros</div>
+          </div>
+          <div style="flex:1;background:#18181b;border-radius:10px;padding:16px;">
+            <div style="font-size:10px;color:#ec4899;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Management</div>
+            <div style="font-size:13px;color:#fff;font-weight:600;line-height:1.3;">Code Review as a Management Tool</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" style="padding:16px 20px;background:#f8f8f6;">
+      <h3 style="margin:0 0 6px;font-size:16px;">C — Modern & Bold</h3>
+      <p style="margin:0;font-size:13px;color:#666;">Dark, tipografia grande e pesada, gradientes vibrantes, layout com personalidade. Impactante e contemporâneo.</p>
+    </div>
+  </div>
+
+  <!-- OPTION D: Hybrid -->
+  <div class="card" data-choice="d" onclick="toggleSelect(this)" style="cursor:pointer;border:2px solid transparent;border-radius:12px;overflow:hidden;background:#fff;transition:all 0.2s;">
+    <div class="card-image" style="padding:0;margin:0;">
+      <div style="background:#111;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;">
+        <!-- Nav -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 28px;border-bottom:1px solid #222;">
+          <span style="font-size:17px;font-weight:700;letter-spacing:-0.5px;color:#e4e4e7;">merge<span style="color:#a78bfa;">conflict</span></span>
+          <div style="display:flex;gap:20px;font-size:12px;color:#71717a;font-weight:500;">
+            <span>Essays</span><span>About</span><span style="color:#a78bfa;">Newsletter</span>
+          </div>
+        </div>
+        <!-- Hero -->
+        <div style="padding:40px 28px 20px;max-width:500px;">
+          <div style="font-size:11px;color:#a78bfa;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">Essay · March 2026</div>
+          <h1 style="font-size:26px;line-height:1.25;color:#f4f4f5;margin:0 0 14px;font-weight:600;letter-spacing:-0.5px;font-family:Georgia,'Times New Roman',serif;">The Manager Who Still Writes Code</h1>
+          <p style="font-size:14px;line-height:1.7;color:#71717a;margin:0 0 20px;">There's a quiet tension in every engineering manager's day. The pull request you want to review versus the 1:1 you need to prepare for. AI is changing this equation.</p>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <span style="font-size:12px;color:#a78bfa;font-weight:500;">Continue reading</span>
+            <span style="color:#a78bfa;">→</span>
+          </div>
+        </div>
+        <!-- Post list -->
+        <div style="padding:0 28px 20px;">
+          <div style="border-top:1px solid #222;padding:16px 0;display:flex;justify-content:space-between;">
+            <div>
+              <div style="font-size:14px;color:#e4e4e7;margin-bottom:4px;font-family:Georgia,serif;">Why I Let Claude Write My Sprint Retros</div>
+              <div style="font-size:11px;color:#52525b;">8 min · <span style="color:#a78bfa;">ai</span></div>
+            </div>
+          </div>
+          <div style="border-top:1px solid #222;padding:16px 0;display:flex;justify-content:space-between;">
+            <div>
+              <div style="font-size:14px;color:#e4e4e7;margin-bottom:4px;font-family:Georgia,serif;">Code Review as a Management Tool</div>
+              <div style="font-size:11px;color:#52525b;">12 min · <span style="color:#a78bfa;">management</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" style="padding:16px 20px;background:#f8f8f6;">
+      <h3 style="margin:0 0 6px;font-size:16px;">D — Hybrid (Editorial + Dev)</h3>
+      <p style="margin:0;font-size:13px;color:#666;">Dark mode com tipografia serifada para títulos, accent color sutil, espaço editorial generoso. Sofisticado e técnico ao mesmo tempo.</p>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .card:hover { border-color: #666 !important; transform: translateY(-2px); }
+  .card.selected { border-color: #a78bfa !important; box-shadow: 0 0 20px rgba(167,139,250,0.3); }
+  @keyframes blink { 0%,50% { opacity:1; } 51%,100% { opacity:0; } }
+</style>

@@ -1,0 +1,121 @@
+<h2>Qual pairing de tipografia pro Merge Conflict?</h2>
+<p class="subtitle">Dois mockups lado a lado simulando um post real do blog. Clique no que você preferir.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1200px;margin:0 auto;">
+
+  <!-- Option A: Space Grotesk + DM Sans -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)" style="cursor:pointer;border:2px solid transparent;border-radius:14px;overflow:hidden;background:#0a0a0a;transition:all 0.2s;">
+    <div style="padding:0;">
+      <!-- Nav -->
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid #27272a;">
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;letter-spacing:-0.5px;">
+          <span style="color:#fff;">MERGE</span><span style="background:linear-gradient(135deg,#f97316,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">CONFLICT</span>
+        </span>
+        <div style="display:flex;gap:16px;font-family:'DM Sans',sans-serif;font-size:11px;color:#71717a;">
+          <span>Posts</span><span>About</span><span style="background:linear-gradient(135deg,#f97316,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">Newsletter</span>
+        </div>
+      </div>
+
+      <!-- Post Header -->
+      <div style="padding:32px 24px 0;">
+        <div style="display:flex;gap:8px;margin-bottom:14px;">
+          <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;color:#f97316;border:1px solid #f9731644;padding:3px 10px;border-radius:12px;">AI</span>
+          <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;color:#ec4899;border:1px solid #ec489944;padding:3px 10px;border-radius:12px;">Management</span>
+        </div>
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;letter-spacing:-1.5px;line-height:1.1;color:#fafafa;margin:0 0 10px;">The Manager Who Still Writes Code</h1>
+        <div style="font-family:'DM Sans',sans-serif;font-size:12px;color:#71717a;margin-bottom:20px;">March 15, 2026 · 8 min read</div>
+      </div>
+
+      <!-- Post Body -->
+      <div style="padding:0 24px 12px;border-top:1px solid #27272a;margin:0 0 0;padding-top:20px;">
+        <p style="font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.75;color:#a1a1aa;margin:0 0 16px;">
+          There's a quiet tension in every engineering manager's day. You open Slack and there's a pull request you're dying to review — a gnarly concurrency bug that your past self would've loved to sink into for hours.
+        </p>
+        <p style="font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.75;color:#a1a1aa;margin:0 0 16px;">
+          But then there's the 1:1 with a report who's been struggling. The sprint retro you haven't prepped for. The hiring pipeline that needs attention.
+        </p>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;letter-spacing:-0.5px;color:#fafafa;margin:0 0 10px;">Where AI Enters the Picture</h2>
+        <p style="font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.75;color:#a1a1aa;margin:0 0 16px;">
+          I started using Claude to draft my retro summaries. Not the observations — those are mine — but the structure, the framing. It saved me 30 minutes every two weeks.
+        </p>
+
+        <!-- Code block -->
+        <div style="background:#18181b;border:1px solid #27272a;border-radius:8px;padding:14px 16px;margin:0 0 16px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.6;color:#a1a1aa;">
+            <span style="color:#7ee787;">const</span> <span style="color:#f0f6fc;">role</span> = getRole(me);<br>
+            <span style="color:#7ee787;">if</span> (role === <span style="color:#f97316;">'manager'</span> && stillLovesCode) {<br>
+            &nbsp;&nbsp;<span style="color:#8b949e;">// this is the merge conflict</span><br>
+            &nbsp;&nbsp;<span style="color:#7ee787;">return</span> <span style="color:#f97316;">'embrace the tension'</span>;<br>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:14px 20px;background:#18181b;border-top:1px solid #27272a;">
+      <h3 style="margin:0 0 4px;font-size:15px;color:#fafafa;font-family:'Space Grotesk',sans-serif;">A — Space Grotesk + DM Sans</h3>
+      <p style="margin:0;font-size:12px;color:#71717a;font-family:'DM Sans',sans-serif;">Tech, moderno, personalidade nos headings. DM Sans super legível no body. Recomendado pelo UI/UX Pro Max.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Outfit + Rubik -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)" style="cursor:pointer;border:2px solid transparent;border-radius:14px;overflow:hidden;background:#0a0a0a;transition:all 0.2s;">
+    <div style="padding:0;">
+      <!-- Nav -->
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid #27272a;">
+        <span style="font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;letter-spacing:-0.5px;">
+          <span style="color:#fff;">MERGE</span><span style="background:linear-gradient(135deg,#f97316,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">CONFLICT</span>
+        </span>
+        <div style="display:flex;gap:16px;font-family:'Rubik',sans-serif;font-size:11px;color:#71717a;">
+          <span>Posts</span><span>About</span><span style="background:linear-gradient(135deg,#f97316,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">Newsletter</span>
+        </div>
+      </div>
+
+      <!-- Post Header -->
+      <div style="padding:32px 24px 0;">
+        <div style="display:flex;gap:8px;margin-bottom:14px;">
+          <span style="font-family:'Rubik',sans-serif;font-size:10px;font-weight:600;color:#f97316;border:1px solid #f9731644;padding:3px 10px;border-radius:12px;">AI</span>
+          <span style="font-family:'Rubik',sans-serif;font-size:10px;font-weight:600;color:#ec4899;border:1px solid #ec489944;padding:3px 10px;border-radius:12px;">Management</span>
+        </div>
+        <h1 style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;letter-spacing:-1.5px;line-height:1.1;color:#fafafa;margin:0 0 10px;">The Manager Who Still Writes Code</h1>
+        <div style="font-family:'Rubik',sans-serif;font-size:12px;color:#71717a;margin-bottom:20px;">March 15, 2026 · 8 min read</div>
+      </div>
+
+      <!-- Post Body -->
+      <div style="padding:0 24px 12px;border-top:1px solid #27272a;margin:0 0 0;padding-top:20px;">
+        <p style="font-family:'Rubik',sans-serif;font-size:14px;line-height:1.75;color:#a1a1aa;margin:0 0 16px;">
+          There's a quiet tension in every engineering manager's day. You open Slack and there's a pull request you're dying to review — a gnarly concurrency bug that your past self would've loved to sink into for hours.
+        </p>
+        <p style="font-family:'Rubik',sans-serif;font-size:14px;line-height:1.75;color:#a1a1aa;margin:0 0 16px;">
+          But then there's the 1:1 with a report who's been struggling. The sprint retro you haven't prepped for. The hiring pipeline that needs attention.
+        </p>
+        <h2 style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;letter-spacing:-0.5px;color:#fafafa;margin:0 0 10px;">Where AI Enters the Picture</h2>
+        <p style="font-family:'Rubik',sans-serif;font-size:14px;line-height:1.75;color:#a1a1aa;margin:0 0 16px;">
+          I started using Claude to draft my retro summaries. Not the observations — those are mine — but the structure, the framing. It saved me 30 minutes every two weeks.
+        </p>
+
+        <!-- Code block -->
+        <div style="background:#18181b;border:1px solid #27272a;border-radius:8px;padding:14px 16px;margin:0 0 16px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.6;color:#a1a1aa;">
+            <span style="color:#7ee787;">const</span> <span style="color:#f0f6fc;">role</span> = getRole(me);<br>
+            <span style="color:#7ee787;">if</span> (role === <span style="color:#f97316;">'manager'</span> && stillLovesCode) {<br>
+            &nbsp;&nbsp;<span style="color:#8b949e;">// this is the merge conflict</span><br>
+            &nbsp;&nbsp;<span style="color:#7ee787;">return</span> <span style="color:#f97316;">'embrace the tension'</span>;<br>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:14px 20px;background:#18181b;border-top:1px solid #27272a;">
+      <h3 style="margin:0 0 4px;font-size:15px;color:#fafafa;font-family:'Outfit',sans-serif;">B — Outfit + Rubik</h3>
+      <p style="margin:0;font-size:12px;color:#71717a;font-family:'Rubik',sans-serif;">Mais arredondado, friendly, startup vibe. Outfit é geométrico e clean, Rubik é soft e acessível.</p>
+    </div>
+  </div>
+
+</div>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;600;700&family=Rubik:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  .card:hover { border-color: #555 !important; transform: translateY(-2px); }
+  .card.selected { border-color: #f97316 !important; box-shadow: 0 0 24px rgba(249,115,22,0.3); }
+</style>
