@@ -13,6 +13,7 @@ export interface Post {
   excerpt: string;
   readingTime: string;
   content: string;
+  image?: string;
 }
 
 export function getAllPosts(): Post[] {
@@ -35,6 +36,7 @@ export function getAllPosts(): Post[] {
         excerpt: data.excerpt || "",
         readingTime: stats.text,
         content,
+        image: data.image || undefined,
       };
     })
     .sort((a, b) => (a.date > b.date ? -1 : 1));
@@ -72,6 +74,21 @@ export function getAdjacentPosts(slug: string): { prev: Post | null; next: Post 
     prev: index < posts.length - 1 ? posts[index + 1] : null,
     next: index > 0 ? posts[index - 1] : null,
   };
+}
+
+export function getRelatedPosts(slug: string, tags: string[], limit = 3): Post[] {
+  const posts = getAllPosts().filter((p) => p.slug !== slug);
+
+  const scored = posts.map((post) => {
+    const shared = post.tags.filter((t) => tags.includes(t)).length;
+    return { post, score: shared };
+  });
+
+  return scored
+    .filter((s) => s.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((s) => s.post);
 }
 
 export function getAllTags(): { name: string; count: number }[] {

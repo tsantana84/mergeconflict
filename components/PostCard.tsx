@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { TagBadge } from "./TagBadge";
 import type { Post } from "@/lib/posts";
 
@@ -12,7 +13,19 @@ export function PostCard({ post, featured = false }: PostCardProps) {
     return (
       <article className="group">
         <Link href={`/blog/${post.slug}`} className="block">
-          <div className="rounded-xl border border-border bg-surface p-8 transition-colors duration-200 hover:border-accent-orange/40">
+          <div className="overflow-hidden rounded-xl border border-border bg-surface transition-colors duration-200 hover:border-accent-orange/40">
+            {post.image && (
+              <div className="relative aspect-video">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                />
+              </div>
+            )}
+            <div className="p-8">
             <div className="mb-4 flex items-center gap-3">
               <span className="inline-block rounded bg-gradient-to-r from-accent-orange to-accent-pink px-3 py-1 text-xs font-bold uppercase tracking-widest text-black">
                 Latest
@@ -31,6 +44,7 @@ export function PostCard({ post, featured = false }: PostCardProps) {
               {post.tags.map((tag) => (
                 <TagBadge key={tag} tag={tag} linked={false} />
               ))}
+            </div>
             </div>
           </div>
         </Link>

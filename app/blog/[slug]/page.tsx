@@ -1,10 +1,13 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getAllPosts, getPostBySlug, getAdjacentPosts } from "@/lib/posts";
+import { getAllPosts, getPostBySlug, getAdjacentPosts, getRelatedPosts } from "@/lib/posts";
 import { renderMDX } from "@/lib/mdx";
 import { TagBadge } from "@/components/TagBadge";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { ScrollDepthTracker } from "@/components/ScrollDepthTracker";
+import { ShareButtons } from "@/components/ShareButtons";
+import { RelatedPosts } from "@/components/RelatedPosts";
+import Image from "next/image";
 import Link from "next/link";
 
 interface PageProps {
@@ -30,6 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       publishedTime: post.date,
       url: `https://mergeconflict.space/blog/${slug}`,
+      ...(post.image && { images: [post.image] }),
     },
   };
 }
@@ -41,6 +45,8 @@ export default async function BlogPost({ params }: PageProps) {
 
   const content = await renderMDX(post.content);
   const { prev, next } = getAdjacentPosts(slug);
+  const related = getRelatedPosts(slug, post.tags);
+  const postUrl = `https://mergeconflict.space/blog/${slug}`;
 
   return (
     <article className="mx-auto max-w-prose px-6 py-16">
@@ -56,13 +62,40 @@ export default async function BlogPost({ params }: PageProps) {
         {post.title}
       </h1>
 
-      <div className="mb-12 flex items-center gap-3 text-sm text-text-muted">
-        <time dateTime={post.date}>{post.date}</time>
-        <span>·</span>
-        <span>{post.readingTime}</span>
+      <div className="mb-8 flex items-center justify-between">
+        <div className="flex items-center gap-3 text-sm text-text-muted">
+          <time dateTime={post.date}>{post.date}</time>
+          <span>·</span>
+          <span>{post.readingTime}</span>
+        </div>
+        <ShareButtons url={postUrl} title={post.title} />
       </div>
 
+      {post.image && (
+        <div className="relative mb-12 aspect-video overflow-hidden rounded-xl">
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            className="object-cover"
+            sizes="680px"
+            priority
+          />
+        </div>
+      )}
+
       <div className="prose-custom">{content}</div>
+
+      <div className="mt-12 flex items-center justify-between border-t border-border pt-6">
+        <div className="flex gap-2">
+          {post.tags.map((tag) => (
+            <TagBadge key={tag} tag={tag} />
+          ))}
+        </div>
+        <ShareButtons url={postUrl} title={post.title} />
+      </div>
+
+      <RelatedPosts posts={related} />
 
       <nav className="mt-12 flex justify-between border-t border-border pt-8">
         {prev ? (
