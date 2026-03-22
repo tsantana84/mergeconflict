@@ -3,14 +3,14 @@ import Link from "next/link";
 export function Header() {
   return (
     <header className="border-b border-border">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
-        <Link href="/" className="font-heading text-xl font-extrabold tracking-tight">
+      <nav className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-5 sm:px-6">
+        <Link href="/" className="font-heading text-lg sm:text-xl font-extrabold tracking-tight shrink-0">
           <span className="text-text-primary">MERGE</span>
           <span className="bg-gradient-to-r from-accent-orange to-accent-pink bg-clip-text text-transparent">
             CONFLICT
           </span>
         </Link>
-        <div className="flex items-center gap-6 text-sm font-medium text-text-muted">
+        <div className="flex items-center gap-3 sm:gap-6 text-sm font-medium text-text-muted">
           <Link href="/" className="transition-colors duration-200 hover:text-text-primary">
             Posts
           </Link>
