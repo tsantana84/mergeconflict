@@ -1,12 +1,7 @@
-import { NewsletterForm } from "./NewsletterForm";
-
 export function Footer() {
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto max-w-5xl px-6 py-16">
-        <div className="mb-12">
-          <NewsletterForm />
-        </div>
+      <div className="mx-auto max-w-5xl px-6 py-10">
         <div className="flex items-center justify-between text-sm text-text-muted">
           <span className="font-heading font-bold tracking-tight">
             <span className="text-text-primary">MERGE</span>
