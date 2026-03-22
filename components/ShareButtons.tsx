@@ -5,9 +5,10 @@ import { trackEvent } from "@/lib/analytics";
 interface ShareButtonsProps {
   url: string;
   title: string;
+  shareLabel?: string;
 }
 
-export function ShareButtons({ url, title }: ShareButtonsProps) {
+export function ShareButtons({ url, title, shareLabel = "Share" }: ShareButtonsProps) {
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
 
@@ -47,7 +48,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
 
   return (
     <div className="flex items-center gap-3">
-      <span className="text-sm text-text-muted">Share</span>
+      <span className="text-sm text-text-muted">{shareLabel}</span>
       {platforms.map(({ name, href, icon }) => (
         <a
           key={name}

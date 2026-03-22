@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { WebSiteJsonLd } from "@/components/JsonLd";
+import { getDictionary } from "@/lib/dictionaries";
+import type { Locale } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Merge Conflict | Engineering Leadership, AI & Code",
@@ -15,8 +17,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
-  const posts = getAllPosts();
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function Home({ params }: PageProps) {
+  const { locale } = await params;
+  const typedLocale = locale as Locale;
+  const dict = await getDictionary(typedLocale);
+  const posts = getAllPosts(typedLocale);
   const [featured, ...rest] = posts;
 
   return (
@@ -24,18 +33,18 @@ export default function Home() {
       <WebSiteJsonLd />
       {featured && (
         <section className="mb-16">
-          <PostCard post={featured} featured />
+          <PostCard post={featured} featured locale={typedLocale} latestLabel={dict.home.latest} />
         </section>
       )}
 
       {rest.length > 0 && (
         <section>
           <h2 className="mb-8 font-heading text-2xl font-bold tracking-tight text-text-primary">
-            All Posts
+            {dict.home.allPosts}
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
             {rest.map((post) => (
-              <PostCard key={post.slug} post={post} />
+              <PostCard key={post.slug} post={post} locale={typedLocale} />
             ))}
           </div>
         </section>

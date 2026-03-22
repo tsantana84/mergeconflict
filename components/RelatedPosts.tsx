@@ -1,24 +1,29 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Post } from "@/lib/posts";
+import type { Locale } from "@/lib/i18n";
 
 interface RelatedPostsProps {
   posts: Post[];
+  locale?: Locale;
+  title?: string;
 }
 
-export function RelatedPosts({ posts }: RelatedPostsProps) {
+export function RelatedPosts({ posts, locale = "en", title = "More Like This" }: RelatedPostsProps) {
   if (posts.length === 0) return null;
+
+  const prefix = locale === "en" ? "" : "/pt";
 
   return (
     <section className="mt-12 border-t border-border pt-8">
       <h2 className="mb-6 font-heading text-xl font-bold tracking-tight text-text-primary">
-        More Like This
+        {title}
       </h2>
       <div className="grid gap-4 sm:grid-cols-3">
         {posts.map((post) => (
           <Link
             key={post.slug}
-            href={`/blog/${post.slug}`}
+            href={`${prefix}/blog/${post.slug}`}
             className="group block rounded-lg border border-border bg-surface p-4 transition-colors duration-200 hover:border-accent-orange/40"
           >
             {post.image && (

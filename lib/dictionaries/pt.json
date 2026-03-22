@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "posts": "Posts",
+    "about": "Sobre",
+    "newsletter": "Newsletter"
+  },
+  "home": {
+    "latest": "Mais recente",
+    "allPosts": "Todos os Posts"
+  },
+  "post": {
+    "previous": "Anterior",
+    "next": "Seguinte",
+    "share": "Compartilhar",
+    "moreLikeThis": "Mais como este"
+  },
+  "newsletter": {
+    "title": "Assine a newsletter",
+    "description": "Textos sobre gestão de engenharia, código e IA. Sem spam.",
+    "placeholder": "voce@exemplo.com",
+    "subscribe": "Assinar",
+    "thanks": "Obrigado! Em breve você recebe novidades."
+  },
+  "about": {
+    "role": "Engineering Manager · Programador",
+    "location": "Rio de Janeiro, Brasil",
+    "whatIs": "O que é o Merge Conflict",
+    "whatIsText": "<strong>Merge Conflict</strong> é um blog sobre o que acontece quando você se recusa a escolher um lado. Gestão ou engenharia. Estratégia ou código. Problemas de pessoas ou problemas técnicos. Este blog vive no diff entre os dois.",
+    "aboutMe": "Sobre mim",
+    "aboutMeText": "Sou Thiago Santana, um engineering manager que anda escrevendo mais código do que em qualquer momento desde que migrei pra gestão, graças à IA. Fico fora do caminho crítico (meu time é dono da main branch), mas tenho usado ferramentas de IA pra construir ferramentas internas, rodar experimentos e automatizar coisas que provavelmente não precisam ser automatizadas. Antes de gestão, passei anos em engenharia backend, e sinceramente, o terminal nunca parou de chamar.",
+    "whatToExpect": "O que esperar",
+    "whatToExpectText": "Os posts aqui cobrem liderança de engenharia, código na prática, e ferramentas e fluxos de IA. Especialmente como IA está mudando o que é possível pra gestores que ainda querem construir. Sem agenda de publicação, apenas quando algo vale um <code>git push</code>.",
+    "aiDisclaimer": "O conteúdo em português é traduzido com auxílio de IA a partir do original em inglês."
+  },
+  "tags": {
+    "title": "Tags",
+    "postsTagged": "Posts com a tag"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "description": "Parece que essa branch nunca foi mergeada.",
+    "backHome": "Voltar pro main"
+  },
+  "skipToContent": "Pular para o conteúdo"
+}

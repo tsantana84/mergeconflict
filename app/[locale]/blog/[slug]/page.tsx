@@ -8,24 +8,34 @@ import { ScrollDepthTracker } from "@/components/ScrollDepthTracker";
 import { ShareButtons } from "@/components/ShareButtons";
 import { RelatedPosts } from "@/components/RelatedPosts";
 import { BlogPostingJsonLd, BreadcrumbJsonLd } from "@/components/JsonLd";
+import { getDictionary } from "@/lib/dictionaries";
+import { locales } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 import Image from "next/image";
 import Link from "next/link";
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  const params: { locale: string; slug: string }[] = [];
+  for (const locale of locales) {
+    const posts = getAllPosts(locale);
+    for (const post of posts) {
+      params.push({ locale, slug: post.slug });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const { slug, locale } = await params;
+  const post = getPostBySlug(slug, locale as Locale);
   if (!post) return {};
 
-  const url = `https://mergeconflict.space/blog/${slug}`;
+  const prefix = locale === "en" ? "" : "/pt";
+  const url = `https://mergeconflict.space${prefix}/blog/${slug}`;
   const imageUrl = post.image
     ? `https://mergeconflict.space${post.image}`
     : undefined;
@@ -35,6 +45,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: post.excerpt,
     alternates: {
       canonical: url,
+      languages: {
+        en: `https://mergeconflict.space/blog/${slug}`,
+        pt: `https://mergeconflict.space/pt/blog/${slug}`,
+      },
     },
     openGraph: {
       title: post.title,
@@ -56,22 +70,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function BlogPost({ params }: PageProps) {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const { slug, locale } = await params;
+  const typedLocale = locale as Locale;
+  const post = getPostBySlug(slug, typedLocale);
   if (!post) notFound();
 
+  const dict = await getDictionary(typedLocale);
   const content = await renderMDX(post.content);
-  const { prev, next } = getAdjacentPosts(slug);
-  const related = getRelatedPosts(slug, post.tags);
-  const postUrl = `https://mergeconflict.space/blog/${slug}`;
+  const { prev, next } = getAdjacentPosts(slug, typedLocale);
+  const related = getRelatedPosts(slug, post.tags, 3, typedLocale);
+  const prefix = locale === "en" ? "" : "/pt";
+  const postUrl = `https://mergeconflict.space${prefix}/blog/${slug}`;
 
   return (
     <article className="mx-auto max-w-prose px-4 py-10 sm:px-6 sm:py-16">
       <BlogPostingJsonLd post={post} url={postUrl} />
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: "https://mergeconflict.space" },
-          { name: "Blog", url: "https://mergeconflict.space" },
+          { name: "Home", url: `https://mergeconflict.space${prefix}` },
+          { name: "Blog", url: `https://mergeconflict.space${prefix}` },
           { name: post.title, url: postUrl },
         ]}
       />
@@ -79,7 +96,7 @@ export default async function BlogPost({ params }: PageProps) {
 
       <div className="mb-6 flex gap-2">
         {post.tags.map((tag) => (
-          <TagBadge key={tag} tag={tag} />
+          <TagBadge key={tag} tag={tag} locale={typedLocale} />
         ))}
       </div>
 
@@ -90,10 +107,10 @@ export default async function BlogPost({ params }: PageProps) {
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3 text-sm text-text-muted">
           <time dateTime={post.date}>{post.date}</time>
-          <span>·</span>
+          <span>&middot;</span>
           <span>{post.readingTime}</span>
         </div>
-        <ShareButtons url={postUrl} title={post.title} />
+        <ShareButtons url={postUrl} title={post.title} shareLabel={dict.post.share} />
       </div>
 
       {post.image && (
@@ -114,21 +131,21 @@ export default async function BlogPost({ params }: PageProps) {
       <div className="mt-12 flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap gap-2">
           {post.tags.map((tag) => (
-            <TagBadge key={tag} tag={tag} />
+            <TagBadge key={tag} tag={tag} locale={typedLocale} />
           ))}
         </div>
-        <ShareButtons url={postUrl} title={post.title} />
+        <ShareButtons url={postUrl} title={post.title} shareLabel={dict.post.share} />
       </div>
 
-      <RelatedPosts posts={related} />
+      <RelatedPosts posts={related} locale={typedLocale} title={dict.post.moreLikeThis} />
 
       <nav className="mt-12 flex justify-between border-t border-border pt-8">
         {prev ? (
           <Link
-            href={`/blog/${prev.slug}`}
+            href={`${prefix}/blog/${prev.slug}`}
             className="group text-left"
           >
-            <span className="text-sm text-text-muted">← Previous</span>
+            <span className="text-sm text-text-muted">&larr; {dict.post.previous}</span>
             <p className="font-heading font-bold text-text-primary transition-colors duration-200 group-hover:text-accent-orange">
               {prev.title}
             </p>
@@ -136,10 +153,10 @@ export default async function BlogPost({ params }: PageProps) {
         ) : <div />}
         {next ? (
           <Link
-            href={`/blog/${next.slug}`}
+            href={`${prefix}/blog/${next.slug}`}
             className="group text-right"
           >
-            <span className="text-sm text-text-muted">Next →</span>
+            <span className="text-sm text-text-muted">{dict.post.next} &rarr;</span>
             <p className="font-heading font-bold text-text-primary transition-colors duration-200 group-hover:text-accent-orange">
               {next.title}
             </p>
@@ -148,7 +165,7 @@ export default async function BlogPost({ params }: PageProps) {
       </nav>
 
       <div className="mt-12">
-        <NewsletterForm />
+        <NewsletterForm dict={dict.newsletter} />
       </div>
     </article>
   );

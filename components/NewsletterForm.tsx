@@ -3,7 +3,25 @@
 import { useState, useRef, useEffect } from "react";
 import { trackEvent } from "@/lib/analytics";
 
-export function NewsletterForm() {
+interface NewsletterFormProps {
+  dict?: {
+    title: string;
+    description: string;
+    placeholder: string;
+    subscribe: string;
+    thanks: string;
+  };
+}
+
+const defaultDict = {
+  title: "Subscribe to the newsletter",
+  description: "Essays on engineering management, coding, and AI. No spam.",
+  placeholder: "you@example.com",
+  subscribe: "Subscribe",
+  thanks: "Thanks! You'll hear from us soon.",
+};
+
+export function NewsletterForm({ dict = defaultDict }: NewsletterFormProps) {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -41,7 +59,7 @@ export function NewsletterForm() {
     return (
       <div className="rounded-xl border border-accent-orange/30 bg-surface p-6 text-center">
         <p className="font-heading text-lg font-bold text-text-primary">
-          Thanks! You'll hear from us soon.
+          {dict.thanks}
         </p>
       </div>
     );
@@ -55,20 +73,20 @@ export function NewsletterForm() {
       className="rounded-xl border border-border bg-surface p-6"
     >
       <h3 className="mb-2 font-heading text-lg font-bold text-text-primary">
-        Subscribe to the newsletter
+        {dict.title}
       </h3>
       <p className="mb-4 text-sm text-text-muted">
-        Essays on engineering management, coding, and AI. No spam.
+        {dict.description}
       </p>
       <div className="flex flex-col sm:flex-row gap-3">
         <label htmlFor="newsletter-email" className="sr-only">
-          Email address
+          Email
         </label>
         <input
           id="newsletter-email"
           type="email"
           required
-          placeholder="you@example.com"
+          placeholder={dict.placeholder}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           onFocus={handleFocus}
@@ -78,7 +96,7 @@ export function NewsletterForm() {
           type="submit"
           className="cursor-pointer rounded-lg bg-gradient-to-r from-accent-orange to-accent-pink px-6 py-2.5 text-sm font-bold text-black transition-opacity duration-200 hover:opacity-90"
         >
-          Subscribe
+          {dict.subscribe}
         </button>
       </div>
     </form>

@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "posts": "Posts",
+    "about": "About",
+    "newsletter": "Newsletter"
+  },
+  "home": {
+    "latest": "Latest",
+    "allPosts": "All Posts"
+  },
+  "post": {
+    "previous": "Previous",
+    "next": "Next",
+    "share": "Share",
+    "moreLikeThis": "More Like This"
+  },
+  "newsletter": {
+    "title": "Subscribe to the newsletter",
+    "description": "Essays on engineering management, coding, and AI. No spam.",
+    "placeholder": "you@example.com",
+    "subscribe": "Subscribe",
+    "thanks": "Thanks! You'll hear from us soon."
+  },
+  "about": {
+    "role": "Engineering Manager · Coder",
+    "location": "Rio de Janeiro, Brazil",
+    "whatIs": "What is Merge Conflict",
+    "whatIsText": "<strong>Merge Conflict</strong> is a blog about what happens when you refuse to pick a lane. Management or engineering. Strategy or code. People problems or technical problems. This blog lives in the diff between both.",
+    "aboutMe": "About me",
+    "aboutMeText": "I'm Thiago Santana, an engineering manager who's been writing more code lately than at any point since moving into management, thanks to AI. I stay off the critical path (my team owns the main branch), but I've been using AI tools to build internal tooling, run experiments, and automate things that probably don't need automating. Before management, I spent years in backend engineering, and honestly, the terminal never stopped calling.",
+    "whatToExpect": "What to expect",
+    "whatToExpectText": "Posts here cover engineering leadership, hands-on coding, and AI tools and workflows. Especially how AI is changing what's possible for managers who still want to build. No posting schedule, just whenever something is worth a <code>git push</code>.",
+    "aiDisclaimer": ""
+  },
+  "tags": {
+    "title": "Tags",
+    "postsTagged": "Posts tagged"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "Looks like this branch was never merged.",
+    "backHome": "Back to main"
+  },
+  "skipToContent": "Skip to content"
+}

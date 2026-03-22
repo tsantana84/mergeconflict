@@ -2,15 +2,17 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { PersonJsonLd } from "@/components/JsonLd";
+import { getDictionary } from "@/lib/dictionaries";
+import type { Locale } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Merge Conflict — the blog about the tension between management and engineering. Written by Thiago Santana, engineering manager and coder from Rio de Janeiro.",
+    "About Merge Conflict -- the blog about the tension between management and engineering. Written by Thiago Santana, engineering manager and coder from Rio de Janeiro.",
   openGraph: {
     title: "About | Merge Conflict",
     description:
-      "About Merge Conflict — the blog about the tension between management and engineering. Written by Thiago Santana.",
+      "About Merge Conflict -- the blog about the tension between management and engineering. Written by Thiago Santana.",
     url: "https://mergeconflict.space/about",
   },
 };
@@ -24,7 +26,14 @@ const socials = [
   { label: "X", href: "https://x.com/thiagosantana" },
 ];
 
-export default function AboutPage() {
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function AboutPage({ params }: PageProps) {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+
   return (
     <div className="mx-auto max-w-2xl px-6 py-16">
       <PersonJsonLd />
@@ -43,9 +52,9 @@ export default function AboutPage() {
             Thiago Santana
           </h1>
           <p className="mt-1 text-text-muted">
-            Engineering Manager &middot; Coder
+            {dict.about.role}
           </p>
-          <p className="text-sm text-text-muted">Rio de Janeiro, Brazil</p>
+          <p className="text-sm text-text-muted">{dict.about.location}</p>
           <div className="mt-4 flex justify-center sm:justify-start gap-3">
             {socials.map((s) => (
               <a
@@ -68,48 +77,37 @@ export default function AboutPage() {
       {/* What is Merge Conflict */}
       <div className="space-y-5 text-lg leading-[1.75] text-text-secondary">
         <h2 className="font-heading text-xl font-bold text-text-primary">
-          What is Merge Conflict
+          {dict.about.whatIs}
         </h2>
-        <p>
-          <strong className="text-text-primary">Merge Conflict</strong> is a
-          blog about what happens when you refuse to pick a lane. Management or
-          engineering. Strategy or code. People problems or technical problems.
-          This blog lives in the diff between both.
-        </p>
+        <p dangerouslySetInnerHTML={{ __html: dict.about.whatIsText }} />
       </div>
 
       {/* About me */}
       <div className="mt-10 space-y-5 text-lg leading-[1.75] text-text-secondary">
         <h2 className="font-heading text-xl font-bold text-text-primary">
-          About me
+          {dict.about.aboutMe}
         </h2>
-        <p>
-          I&apos;m Thiago Santana, an engineering manager who&apos;s been
-          writing more code lately than at any point since moving into
-          management, thanks to AI. I stay off the critical path (my team owns
-          the main branch), but I&apos;ve been using AI tools to build internal
-          tooling, run experiments, and automate things that probably
-          don&apos;t need automating. Before management, I spent years in
-          backend engineering, and honestly, the terminal never stopped calling.
-        </p>
+        <p>{dict.about.aboutMeText}</p>
       </div>
 
       {/* What to expect */}
       <div className="mt-10 space-y-5 text-lg leading-[1.75] text-text-secondary">
         <h2 className="font-heading text-xl font-bold text-text-primary">
-          What to expect
+          {dict.about.whatToExpect}
         </h2>
-        <p>
-          Posts here cover engineering leadership, hands-on coding, and AI tools
-          and workflows. Especially how AI is changing what&apos;s possible for
-          managers who still want to build. No posting schedule, just whenever
-          something is worth a <code className="text-text-primary">git push</code>.
-        </p>
+        <p dangerouslySetInnerHTML={{ __html: dict.about.whatToExpectText }} />
       </div>
+
+      {/* AI disclaimer (PT only) */}
+      {dict.about.aiDisclaimer && (
+        <p className="mt-10 text-sm text-text-muted italic">
+          {dict.about.aiDisclaimer}
+        </p>
+      )}
 
       {/* Newsletter */}
       <div className="mt-12">
-        <NewsletterForm />
+        <NewsletterForm dict={dict.newsletter} />
       </div>
     </div>
   );

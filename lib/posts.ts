@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
+import type { Locale } from "./i18n";
+import { defaultLocale } from "./i18n";
 
 const postsDirectory = path.join(process.cwd(), "content/posts");
 
@@ -16,38 +18,14 @@ export interface Post {
   image?: string;
 }
 
-export function getAllPosts(): Post[] {
-  const files = fs.readdirSync(postsDirectory);
-
-  const posts = files
-    .filter((file) => file.endsWith(".mdx"))
-    .map((file) => {
-      const slug = file.replace(/\.mdx$/, "");
-      const fullPath = path.join(postsDirectory, file);
-      const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data, content } = matter(fileContents);
-      const stats = readingTime(content);
-
-      return {
-        slug,
-        title: data.title,
-        date: data.date,
-        tags: data.tags || [],
-        excerpt: data.excerpt || "",
-        readingTime: stats.text,
-        content,
-        image: data.image || undefined,
-      };
-    })
-    .sort((a, b) => (a.date > b.date ? -1 : 1));
-
-  return posts;
+function getPostsDir(locale: Locale): string {
+  if (locale === defaultLocale) return postsDirectory;
+  return path.join(postsDirectory, locale);
 }
 
-export function getPostBySlug(slug: string): Post | undefined {
-  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-  if (!fs.existsSync(fullPath)) return undefined;
-
+function parsePost(file: string, dir: string): Post {
+  const slug = file.replace(/\.mdx$/, "");
+  const fullPath = path.join(dir, file);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
   const stats = readingTime(content);
@@ -64,12 +42,31 @@ export function getPostBySlug(slug: string): Post | undefined {
   };
 }
 
-export function getPostsByTag(tag: string): Post[] {
-  return getAllPosts().filter((post) => post.tags.includes(tag));
+export function getAllPosts(locale: Locale = defaultLocale): Post[] {
+  const dir = getPostsDir(locale);
+  if (!fs.existsSync(dir)) return [];
+
+  return fs
+    .readdirSync(dir)
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => parsePost(file, dir))
+    .sort((a, b) => (a.date > b.date ? -1 : 1));
 }
 
-export function getAdjacentPosts(slug: string): { prev: Post | null; next: Post | null } {
-  const posts = getAllPosts();
+export function getPostBySlug(slug: string, locale: Locale = defaultLocale): Post | undefined {
+  const dir = getPostsDir(locale);
+  const fullPath = path.join(dir, `${slug}.mdx`);
+  if (!fs.existsSync(fullPath)) return undefined;
+
+  return parsePost(`${slug}.mdx`, dir);
+}
+
+export function getPostsByTag(tag: string, locale: Locale = defaultLocale): Post[] {
+  return getAllPosts(locale).filter((post) => post.tags.includes(tag));
+}
+
+export function getAdjacentPosts(slug: string, locale: Locale = defaultLocale): { prev: Post | null; next: Post | null } {
+  const posts = getAllPosts(locale);
   const index = posts.findIndex((p) => p.slug === slug);
   return {
     prev: index < posts.length - 1 ? posts[index + 1] : null,
@@ -77,8 +74,8 @@ export function getAdjacentPosts(slug: string): { prev: Post | null; next: Post 
   };
 }
 
-export function getRelatedPosts(slug: string, tags: string[], limit = 3): Post[] {
-  const posts = getAllPosts().filter((p) => p.slug !== slug);
+export function getRelatedPosts(slug: string, tags: string[], limit = 3, locale: Locale = defaultLocale): Post[] {
+  const posts = getAllPosts(locale).filter((p) => p.slug !== slug);
 
   const scored = posts.map((post) => {
     const shared = post.tags.filter((t) => tags.includes(t)).length;
@@ -92,8 +89,8 @@ export function getRelatedPosts(slug: string, tags: string[], limit = 3): Post[]
     .map((s) => s.post);
 }
 
-export function getAllTags(): { name: string; count: number }[] {
-  const posts = getAllPosts();
+export function getAllTags(locale: Locale = defaultLocale): { name: string; count: number }[] {
+  const posts = getAllPosts(locale);
   const tagMap = new Map<string, number>();
 
   posts.forEach((post) => {
