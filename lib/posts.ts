@@ -11,6 +11,7 @@ export interface Post {
   slug: string;
   title: string;
   date: string;
+  dateRaw: string;
   tags: string[];
   excerpt: string;
   readingTime: string;
@@ -30,10 +31,14 @@ function parsePost(file: string, dir: string): Post {
   const { data, content } = matter(fileContents);
   const stats = readingTime(content);
 
+  const rawDate = String(data.date);
+  const displayDate = rawDate.slice(0, 10);
+
   return {
     slug,
     title: data.title,
-    date: data.date,
+    date: displayDate,
+    dateRaw: rawDate,
     tags: data.tags || [],
     excerpt: data.excerpt || "",
     readingTime: stats.text,
@@ -50,7 +55,7 @@ export function getAllPosts(locale: Locale = defaultLocale): Post[] {
     .readdirSync(dir)
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => parsePost(file, dir))
-    .sort((a, b) => (a.date > b.date ? -1 : 1));
+    .sort((a, b) => (a.dateRaw > b.dateRaw ? -1 : 1));
 }
 
 export function getPostBySlug(slug: string, locale: Locale = defaultLocale): Post | undefined {
