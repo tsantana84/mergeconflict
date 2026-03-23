@@ -1,0 +1,60 @@
+---
+title: 'I Paid $30 to Build an HTML File'
+date: '2026-03-23T10:00:00'
+tags:
+  - ai
+  - productivity
+  - costs
+excerpt: >-
+  I asked Claude to help me build a simple HTML dashboard. Pure HTML, no
+  frameworks, maybe 200 lines of code. It cost $30.40 in API-equivalent terms.
+  17.8 million tokens. For a file I could have built in Notion in 20 minutes.
+image: /images/stock/stock-03.webp
+---
+
+Earlier today I asked Claude to help me build a simple HTML dashboard. Team planning for the quarter: who works on what, when. Pure HTML, no frameworks, maybe 200 lines of code. Should've cost a dollar or two.
+
+It cost **$30.40** in API-equivalent terms. I'm on the Max plan, so I didn't actually pay that. What I paid was two hours without Claude. The first time in seven months.
+
+Honestly? That hurt more.
+
+## What Actually Happened
+
+The task was simple: I had a team, a handful of projects, and a few two-week blocks across the quarter. I wanted a nice visual grid. So I opened Claude and started talking.
+
+The problem is that I talked *the way humans talk*. One thing at a time.
+
+"Put Alice on Project X." -> Claude edits the file.
+"Actually, make it full-time." -> Claude edits the file.
+"Add Bob too." -> Claude edits the file.
+"Next project: Charlie at 50%..." -> Claude edits the file.
+
+Seventy-nine times. Claude edited a 15KB HTML file **79 times**, re-uploading the entire thing on each pass. The file was accessed **96 times** across a 226-turn session that lasted **3 hours and 14 minutes**.
+
+17.8 million tokens. For a file I could've built in Notion in 20 minutes.
+
+Oh, and Anthropic is currently running a promotion with 2x usage during off-peak hours. I did this during peak hours. Just to round things out.
+
+## Why It Got So Expensive
+
+Two things compounded on each other:
+
+**1. Micro-edits instead of batching.** I gave Claude one data point at a time and it acted on each one immediately. Every edit re-uploaded the full file to the API. 79 edits x 15KB = ~1.7MB of the same HTML file sent over and over.
+
+**2. Cache thrashing.** Claude uses a prompt cache to avoid re-processing the same context. Each edit reset the cache boundary, forcing it to be rebuilt. The session burned **4.9 million cache creation tokens** (the expensive kind) instead of reading from cache cheaply.
+
+The actual conversation? **409 real input tokens.** The other 17.4 million were overhead from the way I worked.
+
+## What I Should Have Done
+
+**Collect all your data first, then generate once.** Instead of "add this person, now add that one," I should've given Claude the full picture upfront (all the people, all the projects, all the allocations) and asked for the HTML in a single shot. That's maybe 1-2 edits total, not 79.
+
+**Batch your changes.** If you do need to iterate, send multiple changes in one message. "Update these 5 things" is one edit. "Update this thing" five times is five edits, five cache resets, five file re-uploads.
+
+**Think in outputs, not conversations.** For generation tasks (HTML, code, documents), Claude works best when you treat it like a compiler: give it complete input, get complete output. Not a live editor you nudge one line at a time.
+
+---
+
+The dashboard looks great, by the way.
+
+And after two hours staring at the "you've hit your limit" screen for the first time in seven months, I had plenty of time to appreciate it.
