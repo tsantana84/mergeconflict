@@ -1,0 +1,68 @@
+---
+title: "Your AI Agent Is a New Engineer"
+date: '2026-04-09T10:00:00'
+tags:
+  - ai
+  - engineering-management
+  - agentic-engineering
+excerpt: >-
+  Most of the conversation about AI in software development is about speed.
+  There is a step before that nobody talks about.
+image: /images/stock/stock-06.webp
+---
+
+I spent the last few weeks doing something I didn't expect: running 1:1s with my AI agent.
+
+Passing context. Correcting wrong assumptions. Explaining why we built something the way we did. Connecting the ticket to the PR to the decision. Last week it proposed a change that looked reasonable. It would have broken a dependency that exists nowhere in the documentation, only in the heads of two engineers who've been on the codebase since 2019. I caught it. Explained the context. Added a note so the next session would start with that knowledge already in place.
+
+I'm still doing it. There's a long way ahead.
+
+## The Step Nobody Talks About
+
+Most of the conversation about AI in software development is about speed. You'll ship faster. You'll write more code. Your team will do more with less.
+
+That might be true eventually. But there's a step before that nobody talks about, especially if your codebase isn't a clean greenfield project.
+
+Our codebase is over 10 years old. Multiple repos. No documentation explaining how they relate to each other. Decisions made in 2017 that still shape how everything works, with the context locked inside the heads of people who may not even be on the team anymore.
+
+Drop an AI agent into that environment and it will go confidently in the wrong direction. Not because the model is bad. Because it has no idea where it is.
+
+That's not an AI problem. That's an onboarding problem.
+
+## Think About Your Last Junior Hire
+
+Think about the last time you hired a junior engineer and put them on a legacy codebase. What did the first few months look like?
+
+They had the skills. They could write code. But they kept missing things: the service that's technically deprecated but still gets traffic, the pattern that looks wrong but exists for a reason, the PR from three years ago that explains why that function is structured the way it is.
+
+You didn't give up on them. You coached them. You said: here's the ticket that describes the problem, here's the PR where we solved it, here's why we made that call.
+
+That's exactly what I'm doing with the agent. Manually. Ticket by ticket, PR by PR.
+
+## What the Agent Makes Visible
+
+The technical side is real: CLAUDE.md files with project conventions, documentation of how our repos relate to each other, small MCPs connecting the agent with Jira and GitHub. Infrastructure work that takes more time than I expected.
+
+But the harder part isn't technical. It's the data. The institutional knowledge that was never written down because everyone who needed it was already in the room.
+
+The agent makes that gap visible. Every time it proposes something that would break a dependency it doesn't know exists, it's pointing at documentation we should have written years ago.
+
+That's uncomfortable. It's also clarifying.
+
+Making your environment AI-ready forces you to answer questions you've been avoiding: What does this service actually do? Why does Repo A depend on Repo B? What's the decision history behind this module?
+
+The answers don't just help the agent. They help the next engineer you hire. They help you when you're six months from this problem and need to remember what you decided.
+
+The work of teaching the AI is the documentation work that was valuable all along. We just had no forcing function to do it.
+
+## Not a Better Prompt. A Better Onboarding.
+
+We're not close to replacing engineers. I want to be honest about that. The model is easy to steer in the wrong direction when the environment isn't prepared. And preparing the environment takes time, patience, and judgment, which is exactly what experienced engineers provide.
+
+But I keep coming back to this: the best engineers I've worked with weren't the ones who wrote the most code. They were the ones who transferred knowledge deliberately, who left things easier to understand than they found them.
+
+That's what a good coach does. And right now, that's what the agent needs.
+
+Not a better prompt. A better onboarding.
+
+And I'm still in the middle of building it.

@@ -1,0 +1,68 @@
+---
+title: "Seu Agente de IA E um Engenheiro Novo"
+date: '2026-04-09T10:00:00'
+tags:
+  - ia
+  - gestao-de-engenharia
+  - engenharia-agentiva
+excerpt: >-
+  A maioria das conversas sobre IA em desenvolvimento e sobre velocidade. Ha um
+  passo antes disso que ninguem fala.
+image: /images/stock/stock-06.webp
+---
+
+Passei as ultimas semanas fazendo algo que nao esperava: tendo 1:1s com meu agente de IA.
+
+Passando contexto. Corrigindo suposicoes erradas. Explicando por que construimos algo do jeito que construimos. Conectando o ticket ao PR com a decisao. Na semana passada ele propus uma mudanca que parecia razoavel. Teria quebrado uma dependencia que nao existe em nenhuma documentacao, so na cabeca de dois engenheiros que estao no codebase desde 2019. Eu peguei. Expliquei o contexto. Adicionei uma nota pra que a proxima sessao comecasse com esse conhecimento ja em mao.
+
+Ainda estou fazendo isso. Tem um longo caminho pela frente.
+
+## O Passo Que Ninguem Fala
+
+A maior parte da conversa sobre IA em desenvolvimento de software e sobre velocidade. Voce vai entregar mais rapido. Vai escrever mais codigo. Seu time vai fazer mais com menos.
+
+Isso pode ser verdade eventualmente. Mas tem um passo antes disso que ninguem fala, especialmente se o seu codebase nao e um projeto greenfield limpo.
+
+Nosso codebase tem mais de 10 anos. Varios repos. Sem documentacao explicando como eles se relacionam. Decisoes tomadas em 2017 que ainda moldam como tudo funciona, com o contexto preso na cabeca de pessoas que podem nem estar mais no time.
+
+Coloque um agente de IA nesse ambiente e ele vai seguir confidentemente na direcao errada. Nao porque o modelo e ruim. Porque ele nao faz ideia de onde esta.
+
+Isso nao e um problema de IA. E um problema de onboarding.
+
+## Pense na Sua Ultima Contratacao Junior
+
+Pense na ultima vez que voce contratou um engenheiro junior e colocou ele num codebase legado. Como foram os primeiros meses?
+
+Ele tinha as habilidades. Sabia escrever codigo. Mas ficava deixando escapar coisas: o servico tecnicamente deprecated mas que ainda recebe trafego, o padrao que parece errado mas existe por uma razao, o PR de tres anos atras que explica por que aquela funcao esta estruturada daquele jeito.
+
+Voce nao desistiu dele. Voce fez coaching. Disse: aqui esta o ticket que descreve o problema, aqui esta o PR onde a gente resolveu, aqui esta por que tomamos essa decisao.
+
+E exatamente isso que estou fazendo com o agente. Manualmente. Ticket por ticket, PR por PR.
+
+## O Que o Agente Torna Visivel
+
+O lado tecnico e real: arquivos CLAUDE.md com convencoes do projeto, documentacao de como nossos repos se relacionam, pequenos MCPs conectando o agente com Jira e GitHub. Trabalho de infraestrutura que leva mais tempo do que eu esperava.
+
+Mas a parte mais dificil nao e tecnica. Sao os dados. O conhecimento institucional que nunca foi escrito porque todo mundo que precisava ja estava na sala.
+
+O agente torna esse gap visivel. Cada vez que ele propoe algo que quebraria uma dependencia que ele nao sabe que existe, esta apontando pra documentacao que deveriamos ter escrito anos atras.
+
+E desconfortavel. Mas tambem e esclarecedor.
+
+Deixar seu ambiente pronto pra IA te obriga a responder perguntas que voce vinha evitando: O que esse servico faz de verdade? Por que o Repo A depende do Repo B? Qual e o historico de decisoes por tras desse modulo?
+
+As respostas nao ajudam so o agente. Ajudam o proximo engenheiro que voce contratar. Ajudam voce quando estiver seis meses distante desse problema e precisar lembrar o que decidiu.
+
+O trabalho de ensinar a IA e o trabalho de documentacao que sempre foi valioso. So nao tinhamos uma forca motriz pra fazer isso.
+
+## Nao Um Prompt Melhor. Um Onboarding Melhor.
+
+Nao estamos perto de substituir engenheiros. Quero ser honesto sobre isso. E facil direcionar o modelo pro caminho errado quando o ambiente nao esta preparado. E preparar o ambiente leva tempo, paciencia e julgamento, que e exatamente o que engenheiros experientes oferecem.
+
+Mas continuo voltando a isso: os melhores engenheiros com quem trabalhei nao foram os que escreveram mais codigo. Foram os que transferiram conhecimento deliberadamente, que deixaram as coisas mais faceis de entender do que as encontraram.
+
+E isso que um bom coach faz. E por enquanto, e o que o agente precisa.
+
+Nao um prompt melhor. Um onboarding melhor.
+
+E ainda estou no meio de construir isso.
